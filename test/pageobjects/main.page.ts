@@ -1,11 +1,11 @@
-import Page from './page';
+import BasePage from './base-page.ts';
 import testData from '../data/test-data.json';
 
 const servicesSection = '//section[@data-testid=\'services\']';
 const servicesName = '(//section[@data-testid=\'services\']//div[@class=\'RentzilaProposes_name__DTnwr\'])';
 const equipmentName = '(//section[@data-testid=\'specialEquipment\']//div[@class=\'RentzilaProposes_name__DTnwr\'])';
 
-class MainPage extends Page {
+class MainPage extends BasePage {
 
     private getServiceNameByNumber(number: number){
         return servicesName + `[${number}]`;

@@ -1,8 +1,8 @@
-import Page from "./page.ts";
+import BasePage from "./base-page.ts";
 
 const logo = 'a.Navbar_logo__RsJHS';
 
-class Header extends Page{
+class Header extends BasePage{
     public clickOnLogo(){
         return super.click(logo);
     }

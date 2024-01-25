@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 
-export default class Page {
+export default class BasePage {
     public open (path: string) {
         return browser.url(`/${path}`);
     }
@@ -27,5 +27,9 @@ export default class Page {
 
     public verifyElement(selector: string) {
         return expect(this.getElement(selector)).toBeDisplayed();
+    }
+
+    public verifyUrl(path: string) {
+        return expect(browser).toHaveUrl(expect.stringContaining(path));
     }
 }
