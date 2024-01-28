@@ -16,7 +16,7 @@ describe('', () => {
         await mainPage.verifyPage();
     });
 
-    it.skip('C212: Checking "Послуги" section on the main page', async () => {
+    it('C212: Checking "Послуги" section on the main page', async () => {
         let categoryNumber = 0;
 
         for (const services of Object.values(testData.services)) {
@@ -37,7 +37,7 @@ describe('', () => {
         }
     });
 
-    it.skip('C213: Checking "Спецтехніка" section on the main page', async () => {
+    it('C213: Checking "Спецтехніка" section on the main page', async () => {
         for (let i = 0; i < Object.keys(testData.specialEquipment).length; i++) {
             await mainPage.clickOnSpecialEquipmentCategory(i + 1);
             await mainPage.checkAllSpecialEquipment(Object.values(testData.specialEquipment)[i]);
@@ -62,7 +62,7 @@ describe('', () => {
         }
     });
 
-    it.skip('C214: Verify that all elements on the footer are displayed and all links are clickable', async () => {
+    it('C214: Verify that all elements on the footer are displayed and all links are clickable', async () => {
         await footer.verifyAboutUsLabel();
         await footer.verifyPrivacyPolicyLink();
         await footer.verifyCookiePolicyLink();
@@ -93,7 +93,7 @@ describe('', () => {
         await tendersPage.verifyPage();
     });
 
-    it.skip('C226: Verify "У Вас залишилися питання?" form', async () => {
+    it('C226: Verify "У Вас залишилися питання?" form', async () => {
         const validName = testData.validName;
         const validPhone = testData.validPhone;
         const invalidPhone1 = testData.invalidPhone1;
