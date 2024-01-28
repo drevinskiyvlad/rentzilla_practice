@@ -1,0 +1,25 @@
+name: Rentzilla practice
+
+on:
+  push:
+    branches: [ master, dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies and Run Tests
+        run: |
+          npm install
+          npm run test:headless
+          npm run report:generate
+
+      - name: Deploy Results to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: allure-report/
