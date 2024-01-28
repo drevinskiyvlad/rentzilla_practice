@@ -29,12 +29,20 @@ export default class BasePage {
         return expect(this.getElement(selector)).toBeDisplayed();
     }
 
+    public verifyElementNotDisplayed(selector: string) {
+        return expect(this.getElement(selector)).not.toBeDisplayed();
+    }
+
     public verifyUrl(path: string) {
         return expect(browser).toHaveUrl(expect.stringContaining(path));
     }
 
     public setValue(selector: string, value: string) {
         return this.getElement(selector).setValue(value);
+    }
+
+    public isElementDisplayed(selector: string) {
+        return this.getElement(selector).isDisplayed();
     }
 
     public verifyElementBorderColor(selector: string, color: string) {
@@ -49,5 +57,9 @@ export default class BasePage {
         if (await browser.isAlertOpen()) {
             await browser.acceptAlert();
         }
+    }
+
+    public async clickEnter(){
+        await browser.keys('Enter');
     }
 }

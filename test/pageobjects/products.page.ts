@@ -2,13 +2,12 @@ import BasePage from './base-page.ts';
 
 const filterForm = '//div[@class=\'Filters_filterForm__XUeaD\']';
 const selectedEquipment = '//div[@class=\'ResetFilters_selectedCategory___D1E6\']/p';
-const unitCard = '(//div[@class=\'UnitCard_cardWrapper__JIPt3\'])[1]'
-const searchInput = '//input[@placeholder=\'Пошук оголошень або послуг\']';
+const firstUnitCard = '(//div[@class=\'UnitCard_cardWrapper__JIPt3\'])[1]'
 
 class ProductsPage extends BasePage {
 
-    public verifySearchInput(){
-        return super.verifyElement(searchInput);
+    public isSearchResultNotEmpty(){
+        return super.isElementDisplayed(firstUnitCard);
     }
 
     public verifySelectedEquipment(equipment: string){
@@ -16,11 +15,15 @@ class ProductsPage extends BasePage {
     }
 
     public verifyUnitCard(){
-        return super.verifyElement(unitCard);
+        return super.verifyElement(firstUnitCard);
+    }
+
+    public verifyEmptySearchResult(){
+        return super.verifyElementNotDisplayed(firstUnitCard);
     }
 
     public clickOnFirstUnitCard(){
-        return super.click(unitCard);
+        return super.click(firstUnitCard);
     }
 
     public verifyPage(){

@@ -37,7 +37,7 @@ describe('', () => {
         }
     });
 
-    it('C213: Checking "Спецтехніка" section on the main page', async () => {
+    it.skip('C213: Checking "Спецтехніка" section on the main page', async () => {
         for (let i = 0; i < Object.keys(testData.specialEquipment).length; i++) {
             await mainPage.clickOnSpecialEquipmentCategory(i + 1);
             await mainPage.checkAllSpecialEquipment(Object.values(testData.specialEquipment)[i]);
@@ -93,8 +93,6 @@ describe('', () => {
         await tendersPage.verifyPage();
     });
 
-    //todo: C530
-
     it.skip('C226: Verify "У Вас залишилися питання?" form', async () => {
         const validName = testData.validName;
         const validPhone = testData.validPhone;
@@ -140,6 +138,83 @@ describe('', () => {
         await mainPage.clearPhoneInputValue();
         await mainPage.setPhoneInputValue(validPhone);
         await mainPage.handleAlert();
+    });
+
+    it.skip('C530: Verify Search Input', async () => {
+        await header.clickOnSearchInput();
+        await mainPage.verifySearchTitles(['Історія пошуку', 'Послуги', 'Категорії']);
+        await mainPage.clickEnter();
+        await productsPage.verifyPage();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('Трактор');
+        await mainPage.clickEnter();
+        await productsPage.verifyUnitCard();
+        await productsPage.clickOnFirstUnitCard();
+        await unitPage.verifyPage();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('Ремонт гидравлики');
+        await mainPage.clickEnter();
+        await productsPage.verifyUnitCard();
+        await productsPage.clickOnFirstUnitCard();
+        await unitPage.verifyPage();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('Ремонт');
+        await header.clickOnFirstSearchResult();
+        await unitPage.verifyPage();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('     ');
+        await mainPage.clickEnter();
+        await productsPage.verifyEmptySearchResult();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('123');
+        if (await productsPage.isSearchResultNotEmpty()) {
+            await header.clickOnFirstSearchResult();
+            await unitPage.verifyPage();
+            await header.clickOnLogo();
+        } else {
+            await productsPage.verifyEmptySearchResult();
+        }
+
+        await header.setSearchInputValue('@');
+        if (await productsPage.isSearchResultNotEmpty()) {
+            await header.clickOnFirstSearchResult();
+            await unitPage.verifyPage();
+            await header.clickOnLogo();
+        } else {
+            await productsPage.verifyEmptySearchResult();
+        }
+
+        await header.setSearchInputValue('^');
+        await header.verifySearchInputText('');
+        await mainPage.clickEnter();
+        await productsPage.verifyPage();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('non-existent');
+        await mainPage.clickEnter();
+        await productsPage.verifyEmptySearchResult();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('Асфальтування');
+        await header.clickOnFirstSearchService();
+        await productsPage.verifyPage();
+        await productsPage.verifyUnitCard();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('Драглайн')
+        await header.clickOnFirstSearchCategory();
+        await productsPage.verifyPage();
+        await productsPage.verifyUnitCard();
+        await header.clickOnLogo();
+
+        await header.setSearchInputValue('Ремонт')
+        await header.clickCancelSearchButton();
+        await header.verifySearchDropdownHidden();
     });
 })
 

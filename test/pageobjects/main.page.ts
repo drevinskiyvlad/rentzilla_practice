@@ -11,6 +11,7 @@ const emptyNameInputError = 'div[class=\'ConsultationForm_name__3bVcz\'] p[role=
 const emptyPhoneInputError = 'div[class=\'ConsultationForm_phone__vEOS9\'] p[role=\'alert\']'
 const nameInput = 'input[name=\'name\']';
 const phoneInput = '#mobile';
+const searchTitles = '//h6[@class=\'LeftsideSearch_title__FkeCp\']';
 
 class MainPage extends BasePage {
 
@@ -28,6 +29,10 @@ class MainPage extends BasePage {
 
     private getEquipmentNameByNumber(number: number){
         return equipmentName + `[${number}]`;
+    }
+
+    private getAllSearchTitles(){
+        return super.getAllElements(searchTitles);
     }
 
     public async checkAllServices(services: string[]){
@@ -96,6 +101,13 @@ class MainPage extends BasePage {
 
     public verifyPhoneInputBorderColor(color: string){
         return super.verifyElementBorderColor(phoneInput, color);
+    }
+
+    public async verifySearchTitles(titles: string[]) {
+        const searchTitles = await this.getAllSearchTitles();
+        for (const [index, title] of titles.entries()) {
+            await super.verifyElementText(searchTitles[index], title);
+        }
     }
 
     public verifyPage(){
