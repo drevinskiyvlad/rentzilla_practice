@@ -13,77 +13,127 @@ const emailLink = '.RentzilaContacts_email__jlzWc';
 const logo = 'div[class*=\'footer\'] div[data-testid=\'logo\']'
 const copyrightLabel = 'div[data-testid=\'copyright\']';
 
-class Footer extends BasePage{
+/**
+ * Footer class that provides methods for interacting with the Footer.
+ */
+class Footer extends BasePage {
 
-    public clickOnPrivacyPolicyLink(){
+    /**
+     * Clicks on the Privacy Policy link.
+     */
+    public clickOnPrivacyPolicyLink() {
         return super.click(privacyPolicyLink);
     }
 
-    public clickOnCookiePolicyLink(){
+    /**
+     * Clicks on the Cookie Policy link.
+     */
+    public clickOnCookiePolicyLink() {
         return super.click(cookiePolicyLink);
     }
 
-    public clickOnTermsAndConditionsLink(){
+    /**
+     * Clicks on the Terms and Conditions link.
+     */
+    public clickOnTermsAndConditionsLink() {
         return super.click(termsAndConditionsLink);
     }
 
-    public clickOnAnnouncementsLink(){
+    /**
+     * Clicks on the Announcements link.
+     */
+    public clickOnAnnouncementsLink() {
         return super.click(announcementsLink);
     }
 
-    public clickOnTendersLink(){
+    /**
+     * Clicks on the Tenders link.
+     */
+    public clickOnTendersLink() {
         return super.click(tendersLink);
     }
 
-    public clickEmailLink(){
-        return super.click(emailLink);
-    }
-
-    public verifyAboutUsLabel(){
+    /**
+     * Verifies the presence of the About Us label.
+     */
+    public verifyAboutUsLabel() {
         return super.verifyElement(aboutUsLabel);
     }
 
-    public verifyPrivacyPolicyLink(){
+    /**
+     * Verifies the presence of the Privacy Policy link.
+     */
+    public verifyPrivacyPolicyLink() {
         return super.verifyElement(privacyPolicyLink);
     }
 
-    public verifyCookiePolicyLink(){
+    /**
+     * Verifies the presence of the Cookie Policy link.
+     */
+    public verifyCookiePolicyLink() {
         return super.verifyElement(cookiePolicyLink);
     }
 
-    public verifyTermsAndConditionsLink(){
+    /**
+     * Verifies the presence of the Terms and Conditions link.
+     */
+    public verifyTermsAndConditionsLink() {
         return super.verifyElement(termsAndConditionsLink);
     }
 
-    public verifyForUsersLabel(){
+    /**
+     * Verifies the presence of the For Users label.
+     */
+    public verifyForUsersLabel() {
         return super.verifyElement(forUsersLabel);
     }
 
-    public verifyAnnouncementsLink(){
+    /**
+     * Verifies the presence of the Announcements link.
+     */
+    public verifyAnnouncementsLink() {
         return super.verifyElement(announcementsLink);
     }
 
-    public verifyTendersLink(){
+    /**
+     * Verifies the presence of the Tenders link.
+     */
+    public verifyTendersLink() {
         return super.verifyElement(tendersLink);
     }
 
-    public verifyJobRequestsLink(){
+    /**
+     * Verifies the presence of the Job Requests link.
+     */
+    public verifyJobRequestsLink() {
         return super.verifyElement(jobRequestsLink);
     }
 
-    public verifyContactsLabel(){
+    /**
+     * Verifies the presence of the Contacts label.
+     */
+    public verifyContactsLabel() {
         return super.verifyElement(contactsLabel);
     }
 
-    public verifyEmailLink(){
+    /**
+     * Verifies the presence of the Email link.
+     */
+    public verifyEmailLink() {
         return super.verifyElement(emailLink);
     }
 
-    public verifyLogo(){
+    /**
+     * Verifies the presence of the Logo.
+     */
+    public verifyLogo() {
         return super.verifyElement(logo);
     }
 
-    public verifyCopyrightLabel(){
+    /**
+     * Verifies the presence of the Copyright label.
+     */
+    public verifyCopyrightLabel() {
         return super.verifyElement(copyrightLabel);
     }
 }

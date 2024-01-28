@@ -2,9 +2,15 @@ import BasePage from "./base-page.ts";
 
 const searchInput = 'input[placeholder=\'Пошук тендера за ключовими словами\']';
 
-class TendersPage extends BasePage{
+/**
+ * TendersPage class that provides methods for interacting with the Tenders page.
+ */
+class TendersPage extends BasePage {
 
-    public verifyPage(){
+    /**
+     * Verifies the URL and the presence of the search input on the page.
+     */
+    public verifyPage() {
         super.verifyUrl('tenders-map');
         return super.verifyElement(searchInput);
     }

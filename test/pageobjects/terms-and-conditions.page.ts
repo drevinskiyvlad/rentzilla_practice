@@ -2,9 +2,15 @@ import BasePage from "./base-page.ts";
 
 const termsConditionsLabel = 'h1[class=\'TermsConditions_title__haW1D\']';
 
-class TermsAndConditionsPage extends BasePage{
+/**
+ * TermsAndConditionsPage class that provides methods for interacting with the Terms and Conditions page.
+ */
+class TermsAndConditionsPage extends BasePage {
 
-    public verifyPage(){
+    /**
+     * Verifies the URL and the presence of the terms and conditions label on the page.
+     */
+    public verifyPage() {
         super.verifyUrl('terms-conditions');
         return super.verifyElement(termsConditionsLabel);
     }

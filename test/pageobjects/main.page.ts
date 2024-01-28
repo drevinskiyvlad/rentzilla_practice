@@ -13,96 +13,185 @@ const nameInput = 'input[name=\'name\']';
 const phoneInput = '#mobile';
 const searchTitles = '//h6[@class=\'LeftsideSearch_title__FkeCp\']';
 
+/**
+ * MainPage class that provides methods for interacting with the Main page.
+ */
 class MainPage extends BasePage {
 
-    private getServiceNameByNumber(number: number){
+    /**
+     * Returns the service name by number.
+     * @param {number} number - The number of the service.
+     * @returns The service name.
+     */
+    private getServiceNameByNumber(number: number) {
         return servicesName + `[${number}]`;
     }
 
-    private getServiceCategoryByNumber(number: number){
+    /**
+     * Returns the service category by number.
+     * @param {number} number - The number of the service category.
+     * @returns The service category.
+     */
+    private getServiceCategoryByNumber(number: number) {
         return serviceCategory + `[${number}]`;
     }
 
-    private getSpecialEquipmentCategoryByNumber(number: number){
+    /**
+     * Returns the special equipment category by number.
+     * @param {number} number - The number of the special equipment category.
+     * @returns The special equipment category.
+     */
+    private getSpecialEquipmentCategoryByNumber(number: number) {
         return specialEquipmentCategory + `[${number}]`;
     }
 
-    private getEquipmentNameByNumber(number: number){
+    /**
+     * Returns the equipment name by number.
+     * @param {number} number - The number of the equipment.
+     * @returns The equipment name.
+     */
+    private getEquipmentNameByNumber(number: number) {
         return equipmentName + `[${number}]`;
     }
 
-    private getAllSearchTitles(){
+    /**
+     * Returns all search titles.
+     * @returns All search titles.
+     */
+    private getAllSearchTitles() {
         return super.getAllElements(searchTitles);
     }
 
-    public async checkAllServices(services: string[]){
+    /**
+     * Checks all services.
+     * @param {string[]} services - The services to check.
+     */
+    public async checkAllServices(services: string[]) {
         for (const [index, service] of services.entries()) {
             await super.verifyText(this.getServiceNameByNumber(index + 1), service);
         }
     }
 
-    public async clickOnServiceCategory(number: number){
+    /**
+     * Clicks on the service category by number.
+     * @param {number} number - The number of the service category.
+     */
+    public async clickOnServiceCategory(number: number) {
         return super.click(this.getServiceCategoryByNumber(number));
     }
 
-    public async checkAllSpecialEquipment(specialEquipment: string[]){
+    /**
+     * Checks all special equipment.
+     * @param {string[]} specialEquipment - The special equipment to check.
+     */
+    public async checkAllSpecialEquipment(specialEquipment: string[]) {
         for (const [index, equipment] of specialEquipment.entries()) {
             await super.verifyText(this.getEquipmentNameByNumber(index + 1), equipment);
         }
     }
 
-    public async clickOnSpecialEquipmentCategory(number: number){
+    /**
+     * Clicks on the special equipment category by number.
+     * @param {number} number - The number of the special equipment category.
+     */
+    public async clickOnSpecialEquipmentCategory(number: number) {
         return super.click(this.getSpecialEquipmentCategoryByNumber(number));
     }
 
-    public clickOnService(number: number){
+    /**
+     * Clicks on the service by number.
+     * @param {number} number - The number of the service.
+     */
+    public clickOnService(number: number) {
         return super.click(this.getServiceNameByNumber(number));
     }
 
-    public clickOnEquipment(number: number){
+    /**
+     * Clicks on the equipment by number.
+     * @param {number} number - The number of the equipment.
+     */
+    public clickOnEquipment(number: number) {
         return super.click(this.getEquipmentNameByNumber(number));
     }
 
-    public clickOnRequestConsultationButton(){
+    /**
+     * Clicks on the request consultation button.
+     */
+    public clickOnRequestConsultationButton() {
         return super.click(requestConsultationButton);
     }
 
-    public setNameInputValue(value: string){
+    /**
+     * Sets the value of the name input.
+     * @param {string} value - The value to set.
+     */
+    public setNameInputValue(value: string) {
         return super.setValue(nameInput, value);
     }
 
-    public setPhoneInputValue(value: string){
+    /**
+     * Sets the value of the phone input.
+     * @param {string} value - The value to set.
+     */
+    public setPhoneInputValue(value: string) {
         return super.setValue(phoneInput, value);
     }
 
-    public clearNameInputValue(){
+    /**
+     * Clears the value of the name input.
+     */
+    public clearNameInputValue() {
         return super.clearInputValue(nameInput);
     }
 
-    public clearPhoneInputValue(){
+    /**
+     * Clears the value of the phone input.
+     */
+    public clearPhoneInputValue() {
         return super.clearInputValue(phoneInput);
     }
 
-    public verifyConsultationSection(){
+    /**
+     * Verifies the presence of the consultation section.
+     */
+    public verifyConsultationSection() {
         return super.verifyElement(consultationSection);
     }
 
-    public verifyEmptyNameInputError(){
+    /**
+     * Verifies the presence of the empty name input error.
+     */
+    public verifyEmptyNameInputError() {
         return super.verifyElement(emptyNameInputError);
     }
 
-    public verifyEmptyPhoneInputError(){
+    /**
+     * Verifies the presence of the empty phone input error.
+     */
+    public verifyEmptyPhoneInputError() {
         return super.verifyElement(emptyPhoneInputError);
     }
 
-    public verifyNameInputBorderColor(color: string){
+    /**
+     * Verifies the border color of the name input.
+     * @param {string} color - The color to verify.
+     */
+    public verifyNameInputBorderColor(color: string) {
         return super.verifyElementBorderColor(nameInput, color);
     }
 
-    public verifyPhoneInputBorderColor(color: string){
+    /**
+     * Verifies the border color of the phone input.
+     * @param {string} color - The color to verify.
+     */
+    public verifyPhoneInputBorderColor(color: string) {
         return super.verifyElementBorderColor(phoneInput, color);
     }
 
+    /**
+     * Verifies the search titles.
+     * @param {string[]} titles - The titles to verify.
+     */
     public async verifySearchTitles(titles: string[]) {
         const searchTitles = await this.getAllSearchTitles();
         for (const [index, title] of titles.entries()) {
@@ -110,11 +199,17 @@ class MainPage extends BasePage {
         }
     }
 
-    public verifyPage(){
+    /**
+     * Verifies the presence of the services section.
+     */
+    public verifyPage() {
         return super.verifyElement(servicesSection);
     }
 
-    public open(){
+    /**
+     * Opens the main page.
+     */
+    public open() {
         return super.open('');
     }
 }

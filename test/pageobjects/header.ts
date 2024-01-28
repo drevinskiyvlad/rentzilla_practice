@@ -7,40 +7,72 @@ const firstSearchService = '//h6[@class=\'LeftsideSearch_title__FkeCp\'][2]/foll
 const firstSearchCategory = '//h6[@class=\'LeftsideSearch_title__FkeCp\'][3]/following-sibling::div[1]/div'
 const cancelSearchButton = 'div[data-testid="searchClear"]';
 
-class Header extends BasePage{
-    public clickOnLogo(){
+/**
+ * Header class that provides methods for interacting with the Header.
+ */
+class Header extends BasePage {
+    /**
+     * Clicks on the Logo.
+     */
+    public clickOnLogo() {
         return super.click(logo);
     }
 
-    public clickOnSearchInput(){
+    /**
+     * Clicks on the Search Input.
+     */
+    public clickOnSearchInput() {
         return super.click(searchInput);
     }
 
-    public clickOnFirstSearchResult(){
+    /**
+     * Clicks on the First Search Result.
+     */
+    public clickOnFirstSearchResult() {
         return super.click(firstSearchResult);
     }
 
-    public setSearchInputValue(value: string){
+    /**
+     * Sets the value of the Search Input.
+     * @param {string} value - The value to set.
+     */
+    public setSearchInputValue(value: string) {
         return super.setValue(searchInput, value);
     }
 
-    public verifySearchInputText(text: string){
+    /**
+     * Verifies the text of the Search Input.
+     * @param {string} text - The text to verify.
+     */
+    public verifySearchInputText(text: string) {
         return super.verifyText(searchInput, text);
     }
 
-    public verifySearchDropdownHidden(){
+    /**
+     * Verifies that the Search Dropdown is hidden.
+     */
+    public verifySearchDropdownHidden() {
         return super.verifyElementNotDisplayed(firstSearchResult);
     }
 
-    public clickOnFirstSearchService(){
+    /**
+     * Clicks on the First Search Service.
+     */
+    public clickOnFirstSearchService() {
         return super.click(firstSearchService);
     }
 
-    public clickOnFirstSearchCategory(){
+    /**
+     * Clicks on the First Search Category.
+     */
+    public clickOnFirstSearchCategory() {
         return super.click(firstSearchCategory);
     }
 
-    public clickCancelSearchButton(){
+    /**
+     * Clicks on the Cancel Search Button.
+     */
+    public clickCancelSearchButton() {
         return super.click(cancelSearchButton);
     }
 }
