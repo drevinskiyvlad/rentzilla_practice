@@ -11,47 +11,58 @@ import tendersPage from "../pageobjects/tenders.page.ts";
 
 describe('', () => {
 
+    beforeEach(async () => {
+        await mainPage.open();
+        await mainPage.verifyPage();
+    });
+
     it.skip('C212: Checking "Послуги" section on the main page', async () => {
-        await mainPage.open();
-        await mainPage.verifyPage();
+        let categoryNumber = 0;
 
-        await mainPage.checkAllPopularServices();
+        for (const services of Object.values(testData.services)) {
+            categoryNumber++;
 
-        for (const [index, service] of testData.services.popular.entries()) {
-            await mainPage.clickOnService(index + 1);
-            await productsPage.verifyPage();
-            await productsPage.verifySelectedCategory(service);
-            await productsPage.verifyUnitCard();
-            await productsPage.clickOnFirstUnitCard();
-            await unitPage.verifyPage();
-            await unitPage.verifyUnitServices(service);
-            await header.clickOnLogo();
-        }
-    })
-
-    it.skip('C213: Checking "Спецтехніка" section on the main page', async () => {
-        await mainPage.open();
-        await mainPage.verifyPage();
-
-        await mainPage.checkAllSpecialEquipment();
-
-        for (const [index] of testData.specialEquipment.popular.entries()) {
-            const category = testData.specialEquipment.categories[index];
-            await mainPage.clickOnEquipment(index + 1);
-            await productsPage.verifyPage();
-            await productsPage.verifySelectedCategory(category);
-            await productsPage.verifyUnitCard();
-            await productsPage.clickOnFirstUnitCard();
-            await unitPage.verifyPage();
-            await unitPage.verifyUnitServices(category);
-            await header.clickOnLogo();
+            for (const [index, service] of services.entries()) {
+                await mainPage.clickOnServiceCategory(categoryNumber);
+                await mainPage.checkAllServices(services);
+                await mainPage.clickOnService(index + 1);
+                await productsPage.verifyPage();
+                await productsPage.verifySelectedEquipment(service);
+                await productsPage.verifyUnitCard();
+                await productsPage.clickOnFirstUnitCard();
+                await unitPage.verifyPage();
+                await unitPage.verifyUnitServices(service);
+                await header.clickOnLogo();
+            }
         }
     });
 
-    it('C214: Verify that all elements on the footer are displayed and all links are clickable', async () => {
-        await mainPage.open();
-        await mainPage.verifyPage();
+    it('C213: Checking "Спецтехніка" section on the main page', async () => {
+        for (let i = 0; i < Object.keys(testData.specialEquipment).length; i++) {
+            await mainPage.clickOnSpecialEquipmentCategory(i + 1);
+            await mainPage.checkAllSpecialEquipment(Object.values(testData.specialEquipment)[i]);
+        }
 
+        let categoryNumber = 0;
+
+        for (const equipments of Object.values(testData.specialEquipmentCategories)) {
+            categoryNumber++;
+
+            for (const [index, equipment] of equipments.entries()) {
+                await mainPage.clickOnSpecialEquipmentCategory(categoryNumber);
+                await mainPage.clickOnEquipment(index + 1);
+                await productsPage.verifyPage();
+                await productsPage.verifySelectedEquipment(equipment);
+                await productsPage.verifyUnitCard();
+                await productsPage.clickOnFirstUnitCard();
+                await unitPage.verifyPage();
+                await unitPage.verifyUnitServices(equipment);
+                await header.clickOnLogo();
+            }
+        }
+    });
+
+    it.skip('C214: Verify that all elements on the footer are displayed and all links are clickable', async () => {
         await footer.verifyAboutUsLabel();
         await footer.verifyPrivacyPolicyLink();
         await footer.verifyCookiePolicyLink();
@@ -82,6 +93,53 @@ describe('', () => {
         await tendersPage.verifyPage();
     });
 
+    //todo: C530
 
+    it.skip('C226: Verify "У Вас залишилися питання?" form', async () => {
+        const validName = testData.validName;
+        const validPhone = testData.validPhone;
+        const invalidPhone1 = testData.invalidPhone1;
+        const invalidPhone2 = testData.invalidPhone2;
+        const invalidParameterBorderColor = testData.errorInputBorderColor;
+        const defaultInputBorderColor = testData.defaultInputBorderColor;
+
+        await mainPage.verifyConsultationSection();
+
+        await mainPage.clickOnRequestConsultationButton();
+        await mainPage.verifyEmptyNameInputError();
+        await mainPage.verifyEmptyPhoneInputError();
+        await mainPage.verifyNameInputBorderColor(invalidParameterBorderColor);
+        await mainPage.verifyPhoneInputBorderColor(invalidParameterBorderColor);
+
+        await mainPage.setNameInputValue(validName);
+        await mainPage.clickOnRequestConsultationButton();
+        await mainPage.verifyEmptyPhoneInputError();
+        await mainPage.verifyPhoneInputBorderColor(invalidParameterBorderColor);
+        await mainPage.verifyNameInputBorderColor(defaultInputBorderColor);
+
+        await mainPage.setPhoneInputValue(validPhone);
+        await mainPage.clearNameInputValue();
+        await mainPage.clickOnRequestConsultationButton();
+        await mainPage.verifyEmptyNameInputError();
+        await mainPage.verifyNameInputBorderColor(invalidParameterBorderColor);
+        await mainPage.verifyPhoneInputBorderColor(defaultInputBorderColor);
+
+        await mainPage.setNameInputValue(validName);
+        await mainPage.clearPhoneInputValue();
+        await mainPage.setPhoneInputValue(invalidPhone1);
+        await mainPage.clickOnRequestConsultationButton();
+        await mainPage.verifyEmptyPhoneInputError();
+        await mainPage.verifyPhoneInputBorderColor(invalidParameterBorderColor);
+
+        await mainPage.clearPhoneInputValue();
+        await mainPage.setPhoneInputValue(invalidPhone2);
+        await mainPage.clickOnRequestConsultationButton();
+        await mainPage.verifyEmptyPhoneInputError();
+        await mainPage.verifyPhoneInputBorderColor(invalidParameterBorderColor);
+
+        await mainPage.clearPhoneInputValue();
+        await mainPage.setPhoneInputValue(validPhone);
+        await mainPage.handleAlert();
+    });
 })
 

@@ -32,4 +32,22 @@ export default class BasePage {
     public verifyUrl(path: string) {
         return expect(browser).toHaveUrl(expect.stringContaining(path));
     }
+
+    public setValue(selector: string, value: string) {
+        return this.getElement(selector).setValue(value);
+    }
+
+    public verifyElementBorderColor(selector: string, color: string) {
+        return expect(this.getElement(selector)).toHaveStyle({'border-color': color});
+    }
+
+    public clearInputValue(selector: string) {
+        return this.getElement(selector).setValue('');
+    }
+
+    public async handleAlert() {
+        if (await browser.isAlertOpen()) {
+            await browser.acceptAlert();
+        }
+    }
 }
