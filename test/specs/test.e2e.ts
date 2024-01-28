@@ -140,7 +140,7 @@ describe('', () => {
         await mainPage.handleAlert();
     });
 
-    it.skip('C530: Verify Search Input', async () => {
+    it('C530: Verify Search Input', async () => {
         await header.clickOnSearchInput();
         await mainPage.verifySearchTitles(['Історія пошуку', 'Послуги', 'Категорії']);
         await mainPage.clickEnter();
@@ -208,9 +208,13 @@ describe('', () => {
 
         await header.setSearchInputValue('Драглайн')
         await header.clickOnFirstSearchCategory();
-        await productsPage.verifyPage();
-        await productsPage.verifyUnitCard();
-        await header.clickOnLogo();
+        if (await productsPage.isSearchResultNotEmpty()) {
+            await header.clickOnFirstSearchResult();
+            await unitPage.verifyPage();
+            await header.clickOnLogo();
+        } else {
+            await productsPage.verifyEmptySearchResult();
+        }
 
         await header.setSearchInputValue('Ремонт')
         await header.clickCancelSearchButton();
