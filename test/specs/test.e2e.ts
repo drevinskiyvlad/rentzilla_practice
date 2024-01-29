@@ -209,7 +209,7 @@ describe('', () => {
         await header.setSearchInputValue('Драглайн')
         await header.clickOnFirstSearchCategory();
         if (await productsPage.isSearchResultNotEmpty()) {
-            await mainPage.clickEnter();
+            await header.clickOnFirstSearchCategory();
             await unitPage.verifyPage();
             await header.clickOnLogo();
         } else {
