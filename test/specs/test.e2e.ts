@@ -173,7 +173,7 @@ describe('', () => {
 
         await header.setSearchInputValue('123');
         if (await productsPage.isSearchResultNotEmpty()) {
-            await header.clickOnFirstSearchResult();
+            await mainPage.clickEnter();
             await unitPage.verifyPage();
             await header.clickOnLogo();
         } else {
@@ -182,7 +182,7 @@ describe('', () => {
 
         await header.setSearchInputValue('@');
         if (await productsPage.isSearchResultNotEmpty()) {
-            await header.clickOnFirstSearchResult();
+            await mainPage.clickEnter();
             await unitPage.verifyPage();
             await header.clickOnLogo();
         } else {
@@ -209,7 +209,7 @@ describe('', () => {
         await header.setSearchInputValue('Драглайн')
         await header.clickOnFirstSearchCategory();
         if (await productsPage.isSearchResultNotEmpty()) {
-            await header.clickOnFirstSearchResult();
+            await mainPage.clickEnter();
             await unitPage.verifyPage();
             await header.clickOnLogo();
         } else {
