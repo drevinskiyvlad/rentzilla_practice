@@ -17,6 +17,9 @@ jobs:
         run: |
           npm install
           npm run test:headless
+
+      - name: Generate Report
+        run: |
           npm run report:generate
 
       - name: Deploy Results to GitHub Pages
