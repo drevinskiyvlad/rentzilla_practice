@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Jan 29 00:10:24 UTC 2024","Mon Jan 29 00:11:21 UTC 2024","56640","","","","","","C213: Checking ""Спецтехніка"" section on the main page",""
+"broken","Mon Jan 29 00:11:29 UTC 2024","Mon Jan 29 00:11:46 UTC 2024","17603","","","","","","C530: Verify Search Input",""
+"passed","Mon Jan 29 00:09:22 UTC 2024","Mon Jan 29 00:10:24 UTC 2024","62809","","","","","","C212: Checking ""Послуги"" section on the main page",""
+"passed","Mon Jan 29 00:11:21 UTC 2024","Mon Jan 29 00:11:25 UTC 2024","4099","","","","","","C214: Verify that all elements on the footer are displayed and all links are clickable",""
+"passed","Mon Jan 29 00:11:25 UTC 2024","Mon Jan 29 00:11:29 UTC 2024","3812","","","","","","C226: Verify ""У Вас залишилися питання?"" form",""
