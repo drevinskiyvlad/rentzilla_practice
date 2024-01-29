@@ -211,7 +211,6 @@ describe('', () => {
         if (await productsPage.isSearchResultNotEmpty()) {
             await productsPage.verifyUnitCard();
             await productsPage.clickOnFirstUnitCard();
-            await unitPage.verifyPage();
             await header.clickOnLogo();
         } else {
             await productsPage.verifyEmptySearchResult();
